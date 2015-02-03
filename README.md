@@ -1,5 +1,6 @@
 ### AbtractError [![Build Status](https://img.shields.io/travis/snowyu/abstract-error.js/master.png)](http://travis-ci.org/snowyu/abstract-error.js) [![npm](https://img.shields.io/npm/v/abstract-error.svg)](https://npmjs.org/package/abstract-error) [![downloads](https://img.shields.io/npm/dm/abstract-error.svg)](https://npmjs.org/package/abstract-error) [![license](https://img.shields.io/npm/l/abstract-error.svg)](https://npmjs.org/package/abstract-error) 
 
+abstract error class with error code supports to create error class quickly.
 
 # AbstractError Classes
 
