@@ -1,6 +1,8 @@
-inherits = require("inherits-ex/lib/inherits")
+inherits        = require("inherits-ex/lib/inherits")
+createFunction  = require("inherits-ex/lib/createFunction")
 
 firstLower = (s) ->
+  return s.toLowerCase() if s is 'IO'
   s[0].toLowerCase() + s.substring(1)
 
 module.exports.AbstractError = class AbstractError
@@ -50,6 +52,17 @@ module.exports.createError = createError = (aType, aErrorCode, ErrorClass=Abstra
       ErrorClass[aIsMethodName] this
   )("is" + aType, ErrorClass)
 
+  ### ugly way to create a named ctor.
+  result = createFunction aType+'Error', ['msg', 'aCode'],
+    "if ('number' !== typeof aCode) {aCode = aErrorCode;}\n
+     if (msg == null || msg === '') {msg = aType;}\n
+    "+ aType + 'Error.__super__.constructor.call(this, msg, aCode);',
+      aErrorCode: aErrorCode
+      aType: aType
+  inherits result, ErrorClass
+  result::name = aType + 'Error'
+  result
+  ###
   return class Err
     inherits Err, ErrorClass
     name: aType + 'Error'

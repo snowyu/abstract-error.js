@@ -20,14 +20,14 @@ describe "test AbstractErrors", ->
   it "test AbstractError Classes",  ->
     err = new Errors.NotFoundError()
     assert.equal err.name, "NotFoundError"
-    assert.ok AbstractError.isNotFound(err), "should be notFound"
-    assert.ok err.notFound(), "should be notFound"
+    assert.ok AbstractError.isNotFound(err), "isNotFound should be notFound"
+    assert.ok err.notFound(), "err should be notFound"
     assert.notOk AbstractError.isOk(err), "should not be ok"
     err.code = 0
     assert.ok AbstractError.isOk(err), "should be ok"
     assert.notOk err.notFound(), "should not be notFound"
     err.code = null
-    assert.ok err.notFound(), "should be notFound"
+    assert.ok err.notFound(), "default msg should be notFound"
 
   it "test AbstractError instance",  ->
     err = new Errors.InvalidArgumentError("")
