@@ -19,7 +19,7 @@
     "test"
   ],
   "dependencies": {
-    "inherits-ex": "~1.0.3"
+    "inherits-ex": "~1.0.4"
   },
   "devDependencies": {
     "chai": "~1.10.0",
