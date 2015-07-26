@@ -1,6 +1,6 @@
 {
   "name": "abstract-error",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "abstract error class with error code supports to create error class quickly",
   "homepage": "https://github.com/snowyu/abstract-error.js",
   "main": "./index",
@@ -19,7 +19,7 @@
     "test"
   ],
   "dependencies": {
-    "inherits-ex": "~1.0.4"
+    "inherits-ex": "~1.1.2"
   },
   "devDependencies": {
     "chai": "~1.10.0",
