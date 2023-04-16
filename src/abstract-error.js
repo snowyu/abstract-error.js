@@ -5,6 +5,8 @@ function firstLower(s) {
   return s[0].toLowerCase() + s.substring(1)
 }
 
+export const Errors = {}
+
 const kOk             = 0
 const kNotFound       = 1
 const kCorruption     = 2
@@ -37,6 +39,8 @@ export function NotImplementedError() {
 }
 inherits(NotImplementedError, AbstractError)
 
+Errors.NotImplementedError = NotImplementedError
+
 const defaultErrorCodes = {
   Ok: kOk,
   NotFound: kNotFound,
@@ -53,36 +57,35 @@ const defaultErrorCodes = {
  * Create an Error Class
  *
  * @param {string} aType the error type
- * @param {number} aErrorCode the error code
- * @param {typeof AbstractError} [ErrorClass] defaults to AbstractError
+ * @param {number} aErrorCode the error code, should be greater than 0.
+ * @param {typeof AbstractError} [ParentErrorClass] the parent error class. defaults to AbstractError
  * @returns {typeof AbstractError} the new Error Class
  */
-export function createError(aType, aErrorCode, ErrorClass=AbstractError) {
-  ErrorClass[aType] = aErrorCode
-  ErrorClass['is' + aType] = (function(aErrorCode, aType) {
+export function createError(aType, aErrorCode, ParentErrorClass=AbstractError) {
+  ParentErrorClass[aType] = aErrorCode
+  ParentErrorClass['is' + aType] = (function(aErrorCode, aType) {
     return function isError(err) {
       return err.code === aErrorCode ||
         (err.code == null && err.message && err.message.substring(0, aType.length) === aType)
     }
   })(aErrorCode, aType)
-  ErrorClass.prototype[firstLower(aType)] = (function(aIsErrorType, ErrorClass) {
+  ParentErrorClass.prototype[firstLower(aType)] = (function(aIsErrorType, ErrorClass) {
     return function isError() {return ErrorClass[aIsErrorType](this)}
-  })('is' + aType, ErrorClass)
+  })('is' + aType, ParentErrorClass)
 
-  class Err {
+  class ErrorWithCode {
     constructor(msg, aCode) {
+      if (!new.target) return new ErrorWithCode(msg, aCode)
       if (typeof aCode !== 'number') {aCode = aErrorCode}
       if (msg == null || msg === '') {msg = aType}
       const ctor = this.Class || this.constructor
-      return Reflect.construct(ErrorClass, [msg, aCode], ctor)
+      return Reflect.construct(ParentErrorClass, [msg, aCode], ctor)
     }
   }
-  Err.prototype.name = aType + 'Error'
-  inherits(Err, ErrorClass)
-  return Err
+  ErrorWithCode.prototype.name = aType + 'Error'
+  inherits(ErrorWithCode, ParentErrorClass)
+  return ErrorWithCode
 }
-
-export const Errors = {}
 
 // create error classes for defaultErrorCodes
 for (const k in defaultErrorCodes) {
