@@ -1,9 +1,10 @@
 {
   "name": "abstract-error",
-  "version": "1.0.2",
+  "version": "2.0.0-alpha.0",
   "description": "abstract error class with error code supports to create error class quickly",
   "homepage": "https://github.com/snowyu/abstract-error.js",
-  "main": "./index",
+  "main": "./lib/abstract.js",
+  "module": "./src/abstract-error.js",
   "files": [
     "README.md",
     "LICENSE-MIT",
@@ -13,9 +14,9 @@
     "lib"
   ],
   "scripts": {
-    "build": "npm run build.cjs && npm run build.ts && npm run doc.md",
+    "build": "npm run build.cjs && npm run build.ts",
     "build.cjs": "babel src --out-dir lib --config-file ./.babelrc",
-    "build.ts": "tsc --declaration --emitDeclarationOnly --outDir lib",
+    "build.ts": "npx cpx 'src/**/*.d.ts' lib",
     "clean": "rm -fr web docs types lib",
     "clean.doc": "rm -fr web docs",
     "clean.ts": "rm -fr types",
@@ -24,7 +25,7 @@
     "doc.md": "typedoc --plugin typedoc-plugin-markdown --out docs ./src",
     "lint": "npx eslint --config .eslintrc.yml src",
     "lint.fix": "npm run lint -- --fix",
-    "release": "npm run clean && npm run build && git add docs && git ci -m 'docs: update API docs' && npx commit-and-tag-version -s",
+    "release": "npm run clean && npm run build && npx commit-and-tag-version -s",
     "release.alpha": "npm run release -- --prerelease alpha",
     "test": "mocha"
   },
