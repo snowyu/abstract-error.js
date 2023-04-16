@@ -1,4 +1,4 @@
-### AbtractError [![Build Status](https://img.shields.io/travis/snowyu/abstract-error.js/master.png)](http://travis-ci.org/snowyu/abstract-error.js) [![npm](https://img.shields.io/npm/v/abstract-error.svg)](https://npmjs.org/package/abstract-error) [![downloads](https://img.shields.io/npm/dm/abstract-error.svg)](https://npmjs.org/package/abstract-error) [![license](https://img.shields.io/npm/l/abstract-error.svg)](https://npmjs.org/package/abstract-error) 
+### AbtractError [![Build Status](https://img.shields.io/travis/snowyu/abstract-error.js/master.png)](http://travis-ci.org/snowyu/abstract-error.js) [![npm](https://img.shields.io/npm/v/abstract-error.svg)](https://npmjs.org/package/abstract-error) [![downloads](https://img.shields.io/npm/dm/abstract-error.svg)](https://npmjs.org/package/abstract-error) [![license](https://img.shields.io/npm/l/abstract-error.svg)](https://npmjs.org/package/abstract-error)
 
 abstract error class with error code supports to create error class quickly.
 
@@ -11,7 +11,7 @@ All Errors are derived from the AbstractError.
 * Members:
   * message: the error message.
   * code: the error code.
-* Methods:
+* Methods: return true if the error instance is this error type.
   * ok()
   * notFound()
   * ....
@@ -34,29 +34,29 @@ the error codes:
 * AbstractError.InvalidFormat   = 8
 
 
-## Other Error Classes:
+## Other Error Classes
 
-* NotFoundError
-* CorruptionError
-* NotSupportedError/NotImplementedError
-* InvalidArgumentError
-* IOError
-* NotOpenedError
-* InvalidTypeError
-* InvalidFormatError
+* Errors.NotFoundError
+* Errors.CorruptionError
+* Errors.NotSupportedError/NotImplementedError
+* Errors.InvalidArgumentError
+* Errors.IOError
+* Errors.NotOpenedError
+* Errors.InvalidTypeError
+* Errors.InvalidFormatError
 
 
 ## Extends the AbstractError
 
 use the `createError` function can extend the AbstractError.
 
-createError(typeName, errorCode[, parentErrorClass])
+`createError(typeName, errorCode[, parentErrorClass])`
 
 __arguments__
 
-* typeName *(string)*: the error type name, the first character must be upper case.
-* errorCode: *(number)*: the error code, it should be greater than 1000.
-* parentErrorClass: *(class)*:  the optional parent error class. defaults to AbstractError.
+* `typeName` *(string)*: the error type name, the first character must be upper case.
+* `errorCode`: *(number)*: the error code, it should be greater than 1000.
+* `parentErrorClass`: *(class)*:  the optional parent error class. defaults to AbstractError.
 
 __return__
 
@@ -66,21 +66,17 @@ __return__
 ### Usage
 
 ```js
+import {AbstractError, Errors, createError} from 'abstract-error';
 
+const NotFoundError = Errors.NotFoundError
+const AlreadyReadError = createError('AlreadyRead', 10000)
 
-var Errors = require("abstract-error/Error")
-var AbstractError = Errors.AbstractError
-var createError = Errors.createError
-
-
-var AlreadyReadError = createError('AlreadyRead', 10000)
-
-var err = new AlreadyReadError("already read over error.")
+const err = new AlreadyReadError('already read over error.')
 
 assert.ok(AbstractError.isAlreadyRead(err))
 assert.ok(AlreadyReadError.isAlreadyRead(err))
 assert.ok(err.alreadyRead())
-assert.equal(err.message, "already read over error.")
+assert.equal(err.message, 'already read over error.')
 assert.equal(err.code, 10000)
 
 ```
