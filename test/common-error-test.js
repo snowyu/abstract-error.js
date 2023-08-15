@@ -3,7 +3,7 @@ import chai from 'chai';
 const assert = chai.assert;
 const should = chai.should();
 
-import {CommonError, createError, Errors} from "../src/common-error";
+import {CommonError, createCommonError as createError, Errors} from "../src/common-error";
 
 describe("test CommonErrors", function() {
   it("test CommonError constants", function() {

@@ -52,3 +52,5 @@ export function createError(aType, aErrorCode, ParentErrorClass=AbstractError) {
   inherits(ErrorWithCode, ParentErrorClass)
   return ErrorWithCode
 }
+
+AbstractError.createError = createError

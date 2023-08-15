@@ -32,9 +32,11 @@ inherits(NotImplementedError, CommonError)
 
 Errors.NotImplementedError = NotImplementedError
 
-export function createError(aType, aErrorCode, ParentErrorClass=CommonError) {
+export function createCommonError(aType, aErrorCode, ParentErrorClass=CommonError) {
   return _createError(aType, aErrorCode, ParentErrorClass)
 }
+
+CommonError.createError = createCommonError
 
 const defaultErrorCodes = {
   Ok: kOk,
