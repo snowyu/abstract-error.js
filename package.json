@@ -1,6 +1,6 @@
 {
   "name": "abstract-error",
-  "version": "2.0.0-alpha.1",
+  "version": "2.0.0-alpha.2",
   "description": "abstract error class with error code supports to create error class quickly",
   "homepage": "https://github.com/snowyu/abstract-error.js",
   "main": "./lib/index.js",
