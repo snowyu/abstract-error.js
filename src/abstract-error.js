@@ -27,7 +27,7 @@ export default AbstractError
  * @param {typeof AbstractError} [ParentErrorClass] the parent error class. defaults to AbstractError
  * @returns {typeof AbstractError} the new Error Class
  */
-export function createError(aType, aErrorCode, ParentErrorClass=AbstractError) {
+export function createErrorClass(aType, aErrorCode, ParentErrorClass=AbstractError) {
   ParentErrorClass[aType] = aErrorCode
   ParentErrorClass['is' + aType] = (function(aErrorCode, aType) {
     return function isError(err) {
@@ -53,4 +53,4 @@ export function createError(aType, aErrorCode, ParentErrorClass=AbstractError) {
   return ErrorWithCode
 }
 
-AbstractError.createError = createError
+AbstractError.createErrorClass = createErrorClass

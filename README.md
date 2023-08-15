@@ -2,11 +2,29 @@
 
 abstract error class with error code supports to create error class quickly.
 
-# AbstractError Classes
+# Classes
 
-## AbstractError
+# AbstractError
 
 All Errors are derived from the AbstractError.
+
+```javascript
+import { AbstractError, createErrorClass } from 'abstract-error'
+```
+
+* Members:
+  * `message`: the error message.
+  * `code`: the error code.
+* Class Methods:
+  * `createErrorClass(aType: string, aErrorCode: number, ParentErrorClass=AbstractError): typeof AbstractError`
+
+## CommonError
+
+```javascript
+import { CommonError } from 'abstract-error'
+```
+
+`CommonError` derived from the `AbstractError`. All Common Errors are derived from the `CommonError`.
 
 * Members:
   * message: the error message.
@@ -17,21 +35,22 @@ All Errors are derived from the AbstractError.
   * ....
   * invalidFormat()
 * Class Methods:
-  * AbstractError.isOk(err)
-  * AbstractError.isNotFound(err)
+  * `createErrorClass(aType: string, aErrorCode: number, ParentErrorClass=CommonError): typeof CommonError`
+  * CommonError.isOk(err)
+  * CommonError.isNotFound(err)
   * ...
 
 the error codes:
 
-* AbstractError.Ok              = 0
-* AbstractError.NotFound        = 1
-* AbstractError.Corruption      = 2
-* AbstractError.NotSupported    = 3
-* AbstractError.InvalidArgument = 4
-* AbstractError.IO              = 5
-* AbstractError.NotOpened       = 6
-* AbstractError.InvalidType     = 7
-* AbstractError.InvalidFormat   = 8
+* CommonError.Ok              = 0
+* CommonError.NotFound        = 1
+* CommonError.Corruption      = 2
+* CommonError.NotSupported    = 3
+* CommonError.InvalidArgument = 4
+* CommonError.IO              = 5
+* CommonError.NotOpened       = 6
+* CommonError.InvalidType     = 7
+* CommonError.InvalidFormat   = 8
 
 
 ## Other Error Classes
@@ -48,9 +67,9 @@ the error codes:
 
 ## Extends the AbstractError
 
-use the `createError` function can extend the AbstractError.
+use the `createErrorClass` function can extend the AbstractError.
 
-`createError(typeName, errorCode[, parentErrorClass])`
+`createErrorClass(typeName, errorCode[, parentErrorClass])`
 
 __arguments__
 
@@ -60,20 +79,20 @@ __arguments__
 
 __return__
 
-* the error class
+* the new error class
 
 
 ### Usage
 
 ```js
-import {AbstractError, Errors, createError} from 'abstract-error';
+import {CommonError, Errors, createCommonErrorClass} from 'abstract-error';
 
 const NotFoundError = Errors.NotFoundError
-const AlreadyReadError = createError('AlreadyRead', 10000)
+const AlreadyReadError = createCommonErrorClass('AlreadyRead', 10000)
 
 const err = new AlreadyReadError('already read over error.')
 
-assert.ok(AbstractError.isAlreadyRead(err))
+assert.ok(CommonError.isAlreadyRead(err))
 assert.ok(AlreadyReadError.isAlreadyRead(err))
 assert.ok(err.alreadyRead())
 assert.equal(err.message, 'already read over error.')

@@ -1,6 +1,6 @@
 import {createCtor, createFunction, inherits, setPrototypeOf} from 'inherits-ex'
 
-import {AbstractError, createError as _createError} from './abstract-error.js'
+import {AbstractError, createErrorClass} from './abstract-error.js'
 
 export const Errors = {}
 
@@ -32,11 +32,11 @@ inherits(NotImplementedError, CommonError)
 
 Errors.NotImplementedError = NotImplementedError
 
-export function createCommonError(aType, aErrorCode, ParentErrorClass=CommonError) {
-  return _createError(aType, aErrorCode, ParentErrorClass)
+export function createCommonErrorClass(aType, aErrorCode, ParentErrorClass=CommonError) {
+  return createErrorClass(aType, aErrorCode, ParentErrorClass)
 }
 
-CommonError.createError = createCommonError
+CommonError.createErrorClass = createCommonErrorClass
 
 const defaultErrorCodes = {
   Ok: kOk,
@@ -52,6 +52,6 @@ const defaultErrorCodes = {
 
 // create error classes for defaultErrorCodes
 for (const k in defaultErrorCodes) {
-  const Err = _createError(k, defaultErrorCodes[k], CommonError)
+  const Err = createCommonErrorClass(k, defaultErrorCodes[k])
   if (defaultErrorCodes[k] > 0) (Errors[k + 'Error'] = Err)
 }

@@ -7,7 +7,7 @@ export class AbstractError extends Error {
    * @param {typeof AbstractError} [ParentErrorClass] the parent error class. defaults to AbstractError
    * @returns {typeof AbstractError} the new Error Class
    */
-  static createError(aType: string, aErrorCode: number, ParentErrorClass?: typeof AbstractError): typeof AbstractError
+  static createErrorClass(aType: string, aErrorCode: number, ParentErrorClass?: typeof AbstractError): typeof AbstractError
 
   /**
    * the error code
@@ -25,6 +25,6 @@ export class AbstractError extends Error {
  * @param {typeof AbstractError} [ParentErrorClass] the parent error class. defaults to AbstractError
  * @returns {typeof AbstractError} the new Error Class
  */
-export function createError(aType: string, aErrorCode: number, ParentErrorClass?: typeof AbstractError): typeof AbstractError
+export function createErrorClass(aType: string, aErrorCode: number, ParentErrorClass?: typeof AbstractError): typeof AbstractError
 
 export default AbstractError

@@ -3,7 +3,7 @@ import chai from 'chai';
 const assert = chai.assert;
 const should = chai.should();
 
-import {CommonError, createCommonError as createError, Errors} from "../src/common-error";
+import {CommonError, createCommonErrorClass as createErrorClass, Errors} from "../src/common-error";
 
 describe("test CommonErrors", function() {
   it("test CommonError constants", function() {
@@ -21,6 +21,7 @@ describe("test CommonErrors", function() {
   it("test CommonError Classes", function() {
     var err;
     err = new Errors.NotFoundError();
+    assert.instanceOf(err, CommonError);
     assert.equal(err.name, "NotFoundError");
     assert.ok(CommonError.isNotFound(err), "isNotFound should be notFound");
     assert.ok(err.notFound(), "err should be notFound");
@@ -34,6 +35,7 @@ describe("test CommonErrors", function() {
   it("test CommonError instance", function() {
     var err;
     err = new Errors.InvalidArgumentError("");
+    assert.instanceOf(err, CommonError);
     assert.notOk(err.ok(), "should not be ok");
     assert.notOk(err.notFound(), "should not be notFound");
     assert.ok(err.invalidArgument(), "should be invalidArgument");
@@ -46,7 +48,7 @@ describe("test CommonErrors", function() {
 describe("test extend CommonError", function() {
   it("should add a new Error class to CommonError", function() {
     var ErrCls, err;
-    ErrCls = createError("MyError", 1000);
+    ErrCls = createErrorClass("MyError", 1000);
     err = new ErrCls("already read over error.");
     assert.ok(CommonError.isMyError(err));
     assert.ok(err.myError());
@@ -55,8 +57,8 @@ describe("test extend CommonError", function() {
   });
   it("should add a new Error class to MyError", function() {
     var Error1, MyError, err;
-    MyError = createError("MyError", 1000);
-    Error1 = createError("Error1", 12, MyError);
+    MyError = createErrorClass("MyError", 1000);
+    Error1 = createErrorClass("Error1", 12, MyError);
     err = new Error1("already read over error.");
     assert.instanceOf(err, MyError);
     assert.equal(err.name, "Error1Error");

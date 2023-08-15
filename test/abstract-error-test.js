@@ -3,7 +3,7 @@ import chai from 'chai';
 const assert = chai.assert;
 const should = chai.should();
 
-import {AbstractError, createError} from "../src/abstract-error";
+import {AbstractError, createErrorClass} from "../src/abstract-error";
 
 describe("test AbstractErrors", function() {
   it("test new AbstractError Class", function() {
@@ -25,7 +25,7 @@ describe("test AbstractErrors", function() {
 describe("test createError", function() {
   it("should add a new Error class to AbstractError", function() {
     var ErrCls, err;
-    ErrCls = createError("MyError", 1000);
+    ErrCls = createErrorClass("MyError", 1000);
     err = new ErrCls("already read over error.");
     assert.ok(AbstractError.isMyError(err));
     assert.ok(err.myError());
@@ -34,8 +34,8 @@ describe("test createError", function() {
   });
   it("should add a new Error class to MyError", function() {
     var Error1, MyError, err;
-    MyError = createError("MyError", 1000);
-    Error1 = createError("Error1", 12, MyError);
+    MyError = createErrorClass("MyError", 1000);
+    Error1 = createErrorClass("Error1", 12, MyError);
     err = new Error1("already read over error.");
     assert.instanceOf(err, MyError);
     assert.equal(err.name, "Error1Error");
