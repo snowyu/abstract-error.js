@@ -3,47 +3,26 @@ import chai from 'chai';
 const assert = chai.assert;
 const should = chai.should();
 
-import {AbstractError, Errors, createError} from "../src/abstract-error";
+import {AbstractError, createError} from "../src/abstract-error";
 
 describe("test AbstractErrors", function() {
-  it("test AbstractError constants", function() {
-    assert.equal(AbstractError.Ok, 0);
-    assert.equal(AbstractError.NotFound, 1);
-  });
-  it("test AbstractError Class Methods", function() {
+  it("test new AbstractError Class", function() {
     var err;
-    err = new AbstractError("", 1);
-    assert.ok(AbstractError.isNotFound(err), "should be notFound");
-    assert.notOk(AbstractError.isOk(err), "should not be ok");
-    err.code = 0;
-    assert.ok(AbstractError.isOk(err), "should be ok");
+    err = new AbstractError("abstract error", 1);
+    assert.instanceOf(err, AbstractError);
+    assert.equal(err.code, 1);
+    assert.equal(err.message, "abstract error");
   });
-  it("test AbstractError Classes", function() {
+  it("test AbstractError Class", function() {
     var err;
-    err = new Errors.NotFoundError();
-    assert.equal(err.name, "NotFoundError");
-    assert.ok(AbstractError.isNotFound(err), "isNotFound should be notFound");
-    assert.ok(err.notFound(), "err should be notFound");
-    assert.notOk(AbstractError.isOk(err), "should not be ok");
-    err.code = 0;
-    assert.ok(AbstractError.isOk(err), "should be ok");
-    assert.notOk(err.notFound(), "should not be notFound");
-    err.code = null;
-    assert.ok(err.notFound(), "default msg should be notFound");
-  });
-  it("test AbstractError instance", function() {
-    var err;
-    err = new Errors.InvalidArgumentError("");
-    assert.notOk(err.ok(), "should not be ok");
-    assert.notOk(err.notFound(), "should not be notFound");
-    assert.ok(err.invalidArgument(), "should be invalidArgument");
-    assert.equal(err.message, "InvalidArgument");
-    err = new Errors.InvalidArgumentError();
-    assert.equal(err.message, "InvalidArgument");
+    err = AbstractError("abstract error", 1);
+    assert.instanceOf(err, AbstractError);
+    assert.equal(err.code, 1);
+    assert.equal(err.message, "abstract error");
   });
 });
 
-describe("test extend AbstractError", function() {
+describe("test createError", function() {
   it("should add a new Error class to AbstractError", function() {
     var ErrCls, err;
     ErrCls = createError("MyError", 1000);
