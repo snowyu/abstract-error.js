@@ -22,4 +22,4 @@
       "out": "docs"
     },
     "exclude": ["**/*.spec.js", "**/*.test.js"]
-  }
+}
