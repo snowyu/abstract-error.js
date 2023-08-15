@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.0.0-alpha.4](https://github.com/snowyu/abstract-error.js/compare/v2.0.0-alpha.3...v2.0.0-alpha.4) (2023-08-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* rename createError to createErrorClass
+
+### Refactor
+
+* rename createError to createErrorClass ([9eb090e](https://github.com/snowyu/abstract-error.js/commit/9eb090e8d1f83591cb74033966f09f78f1b9730c))
+
 ## [2.0.0-alpha.3](https://github.com/snowyu/abstract-error.js/compare/v2.0.0-alpha.2...v2.0.0-alpha.3) (2023-08-15)
 
 
