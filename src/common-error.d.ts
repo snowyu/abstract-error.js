@@ -19,7 +19,7 @@ export class CommonError extends AbstractError {
    * @param {typeof CommonError} [ParentErrorClass] the parent error class. defaults to CommonError
    * @returns {typeof CommonError} the new Error Class
    */
-  static createError(aType: string, aErrorCode: number, ParentErrorClass?: Error): typeof CommonError
+  static createError(aType: string, aErrorCode: number, ParentErrorClass?: typeof CommonError): typeof CommonError
 
   static isOk(err: CommonError): boolean
   static isNotFound(err: CommonError): boolean
@@ -87,4 +87,4 @@ export type Errors = {
  * @param {typeof CommonError} [ParentErrorClass] the parent error class. defaults to CommonError
  * @returns {typeof CommonError} the new Error Class
  */
-export function createCommonError(aType: string, aErrorCode: number, ParentErrorClass?: Error): typeof CommonError
+export function createCommonError(aType: string, aErrorCode: number, ParentErrorClass?: typeof CommonError): typeof CommonError
