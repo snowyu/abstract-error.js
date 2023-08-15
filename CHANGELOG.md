@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.0.0-alpha.3](https://github.com/snowyu/abstract-error.js/compare/v2.0.0-alpha.2...v2.0.0-alpha.3) (2023-08-15)
+
+
+### Bug Fixes
+
+* **ts:** static createError's ParentErrorClass type error ([81d0867](https://github.com/snowyu/abstract-error.js/commit/81d0867d1a4de2e323e5eaecc0588e27c8cb9609))
+
 ## [2.0.0-alpha.2](https://github.com/snowyu/abstract-error.js/compare/v2.0.0-alpha.1...v2.0.0-alpha.2) (2023-08-15)
 
 
