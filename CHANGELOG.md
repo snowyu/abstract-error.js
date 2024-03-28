@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.0.0-alpha.6](https://github.com/snowyu/abstract-error.js/compare/v2.0.0-alpha.5...v2.0.0-alpha.6) (2024-03-28)
+
+
+### Features
+
+* allow string as error code ([9b2cca5](https://github.com/snowyu/abstract-error.js/commit/9b2cca5a1000080ea2576364de2d2df819e98afd))
+
 ## [2.0.0-alpha.5](https://github.com/snowyu/abstract-error.js/compare/v2.0.0-alpha.4...v2.0.0-alpha.5) (2024-03-28)
 
 ## [2.0.0-alpha.4](https://github.com/snowyu/abstract-error.js/compare/v2.0.0-alpha.3...v2.0.0-alpha.4) (2023-08-15)
