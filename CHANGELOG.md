@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.0.0-alpha.7](https://github.com/snowyu/abstract-error.js/compare/v2.0.0-alpha.6...v2.0.0-alpha.7) (2024-03-28)
+
+
+### Bug Fixes
+
+* ES6 Class instanceof error, always be treat as AbstractError ([4058c41](https://github.com/snowyu/abstract-error.js/commit/4058c419c66ba0379275b09ff48294eef4a61013))
+* **ts:** constructor errno should be a string now ([d3fa68e](https://github.com/snowyu/abstract-error.js/commit/d3fa68eadd2e9d3ca7502fec9a103a102d94abb7))
+
 ## [2.0.0-alpha.6](https://github.com/snowyu/abstract-error.js/compare/v2.0.0-alpha.5...v2.0.0-alpha.6) (2024-03-28)
 
 
