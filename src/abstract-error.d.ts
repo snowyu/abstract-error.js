@@ -22,7 +22,7 @@ export class AbstractError extends Error {
    */
   code: number|string
 
-  constructor(msg?: string, errno?: number)
+  constructor(msg?: string, errno?: number|string)
 }
 
 /**
