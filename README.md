@@ -25,6 +25,7 @@ import { CommonError } from 'abstract-error'
 ```
 
 `CommonError` derived from the `AbstractError`. All Common Errors are derived from the `CommonError`.
+The `CommonError` use the number as error code.
 
 * Members:
   * message: the error message.
@@ -35,7 +36,7 @@ import { CommonError } from 'abstract-error'
   * ....
   * invalidFormat()
 * Class Methods:
-  * `createErrorClass(aType: string, aErrorCode: number, ParentErrorClass=CommonError): typeof CommonError`
+  * `createErrorClass(aType: string, aErrorCode?: number, ParentErrorClass=CommonError): typeof CommonError`
   * CommonError.isOk(err)
   * CommonError.isNotFound(err)
   * ...
@@ -69,13 +70,13 @@ the error codes:
 
 use the `createErrorClass` function can extend the AbstractError.
 
-`createErrorClass(typeName, errorCode[, parentErrorClass])`
+`createErrorClass(typeName, errorCode?: number|string, parentErrorClass?: typeof AbstractError): typeof AbstractError`
 
 __arguments__
 
 * `typeName` *(string)*: the error type name, the first character must be upper case.
-* `errorCode`: *(number)*: the error code, it should be greater than 1000.
-* `parentErrorClass`: *(class)*:  the optional parent error class. defaults to AbstractError.
+* `errorCode`: *(number|string)*: the optional error code, it should be not equal 0 if it's a number.
+* `parentErrorClass`: *(class)*:  the optional parent error class. defaults to `AbstractError`.
 
 __return__
 

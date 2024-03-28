@@ -44,4 +44,31 @@ describe("test createError", function() {
     assert.ok(MyError.isError1(err), "MyError.isError1");
     assert.ok(err.error1(), "err.error1");
   });
+  it("should add a new Error class to AbstractError with string error code", function() {
+    var ErrCls, err;
+    ErrCls = createErrorClass("MyError", "ErrCode");
+    err = new ErrCls("already read over error.");
+    assert.ok(AbstractError.isMyError(err));
+    assert.ok(err.myError());
+    assert.equal(err.message, "already read over error.");
+    assert.equal(err.code, "ErrCode");
+  });
+  it("should add a new Error class to MyError with string error code", function() {
+    var MyError = createErrorClass("My", "MyErrCode");
+    var My1Error = createErrorClass("My1", "MyErr1Code", MyError);
+    var My2Error = createErrorClass("My2", MyError);
+    var err = new My1Error("already read over error.");
+    assert.instanceOf(err, MyError);
+    assert.equal(err.name, "My1Error");
+    assert.equal(err.message, "already read over error.");
+    assert.equal(err.code, "MyErr1Code");
+    assert.ok(MyError.isMy1(err), "MyError.isError1");
+    assert.ok(err.my1(), "err.my1");
+    err = new My2Error("already read over error.");
+    assert.instanceOf(err, My2Error);
+    assert.equal(err.name, "My2Error");
+    assert.equal(err.message, "already read over error.");
+    assert.equal(err.code, "MyErrCode");
+    assert.equal(err.hasOwnProperty('code'), false);
+  });
 });

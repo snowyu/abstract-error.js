@@ -15,11 +15,19 @@ export class CommonError extends AbstractError {
    * Create an Error Class
    *
    * @param {string} aType the error type(class) name
-   * @param {number} aErrorCode the error code, should be greater than 0.
    * @param {typeof CommonError} [ParentErrorClass] the parent error class. defaults to CommonError
    * @returns {typeof CommonError} the new Error Class
    */
-  static createErrorClass(aType: string, aErrorCode: number, ParentErrorClass?: typeof CommonError): typeof CommonError
+  static createErrorClass(aType: string, ParentErrorClass?: typeof CommonError): typeof CommonError
+  /**
+   * Create an Error Class
+   *
+   * @param {string} aType the error type(class) name
+   * @param {number} [aErrorCode] the error code, should be greater than 0.
+   * @param {typeof CommonError} [ParentErrorClass] the parent error class. defaults to CommonError
+   * @returns {typeof CommonError} the new Error Class
+   */
+  static createErrorClass(aType: string, aErrorCode?: number, ParentErrorClass?: typeof CommonError): typeof CommonError
 
   static isOk(err: CommonError): boolean
   static isNotFound(err: CommonError): boolean
@@ -85,8 +93,8 @@ export const Errors: ICommonErrors
  * Create an Error Class
  *
  * @param {string} aType the error type(class) name
- * @param {number} aErrorCode the error code, should be greater than 0.
+ * @param {number} [aErrorCode] the error code, should be greater than 0.
  * @param {typeof CommonError} [ParentErrorClass] the parent error class. defaults to CommonError
  * @returns {typeof CommonError} the new Error Class
  */
-export function createCommonErrorClass(aType: string, aErrorCode: number, ParentErrorClass?: typeof CommonError): typeof CommonError
+export function createCommonErrorClass(aType: string, aErrorCode?: number, ParentErrorClass?: typeof CommonError): typeof CommonError
