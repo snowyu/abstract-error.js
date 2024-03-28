@@ -30,7 +30,7 @@
     "test": "mocha"
   },
   "dependencies": {
-    "inherits-ex": "^2.1.0-alpha.11"
+    "inherits-ex": "^2.1.0-alpha.12"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.40.2",
