@@ -7,7 +7,7 @@ function firstLower(s) {
 
 export function AbstractError(msg, errno) {
   if (!new.target) return new AbstractError(msg, errno)
-  const ctor = this.Class || this.constructor
+  const ctor = this.constructor
   const self = Reflect.construct(Error, arguments, ctor)
   // const self = Error.apply(this, arguments)
   // setPrototypeOf(self, ctor.prototype)
